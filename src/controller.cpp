@@ -19,10 +19,10 @@
 
 #define SWITCH 6               // 스위치
 
-const int center1 = 474;
-const int center2 = 488;
-const int center3 = 492;
-const int center4 = 488;
+const int center1 = 503;
+const int center2 = 517;
+const int center3 = 522;
+const int center4 = 517;
 
 // 아날로그 입력의 최소/최대값
 const int analogMin = 0;
@@ -114,15 +114,15 @@ void loop() {
   float s2_X = mapJoy(X2, center3);
   float s2_Y = mapJoy(Y2, center4);
 
-  // Serial.print("s1_X: ");
-  // Serial.print(s1_X);
-  // Serial.print(" s1_Y: ");
-  // Serial.print(s1_Y);
-  // Serial.print(" s2_X: ");
-  // Serial.print(s2_X);
-  // Serial.print(" s2_Y: ");
-  // Serial.println(s2_Y);
-  
+  Serial.print("X1: ");
+  Serial.print(X1);
+  Serial.print(" Y1: ");
+  Serial.print(Y1);
+  Serial.print(" X2: ");
+  Serial.print(X2);
+  Serial.print(" Y2: ");
+  Serial.print(Y2);
+  Serial.println();
 
 
   float s2_rad = atan2(s2_Y, s2_X); // 조이스틱 각도 - 라디안
@@ -137,17 +137,17 @@ void loop() {
   data.s2_distance = s2_distance;
   data.switchState = checkSwitch();
 
-  Serial.print("Switch: ");
-  Serial.println(data.switchState);
+
   Serial.print("s2_rad: ");
   Serial.print(data.s2_rad);
   Serial.print(" s2_distance: ");
-  Serial.println(data.s2_distance);
-  Serial.print("s1_X: ");
+  Serial.print(data.s2_distance);
+  Serial.print(" s1_X: ");
   Serial.print(data.s1_X);
   Serial.print(" s1_Y: ");
   Serial.print(data.s1_Y);
   Serial.println();
+  
 
   // NRF24L01+
   radio.write(&data, sizeof(data));
